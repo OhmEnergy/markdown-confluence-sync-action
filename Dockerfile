@@ -5,6 +5,10 @@ RUN corepack enable && corepack prepare pnpm@9.4.0 --activate
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 ENV PUPPETEER_EXECUTABLE_PATH="/usr/bin/chromium"
 
+# TEST: GitHub Actions passes the runner's HOME into the container, which may not be
+# writable/appropriate for Chrome's profile/cache data. Try a known-writable HOME.
+ENV HOME=/tmp
+
 # cspell: disable
 # Install Google Chrome Stable and fonts
 # Note: this installs the necessary libs to make the browser work with Puppeteer, and the fonts needed for Mermaid
