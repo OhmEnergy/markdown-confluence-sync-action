@@ -20,6 +20,22 @@ index becdc594dc728755f1684ee329874627a92adad6..1f47f933e8562d5371768f1ed9493fd7
 +    return widthMatch ? { "ac:width": widthMatch[1] } : {};
  }
  export default rehypeReplaceImgTags;
+diff --git a/dist/lib/confluence/transformer/support/rehype/rehype-replace-internal-references.js b/dist/lib/confluence/transformer/support/rehype/rehype-replace-internal-references.js
+index 964459b80bc6d153d9d71cca49e03a8e6e3cf8cb..503c0f48f910d464b57d8e0405fd47363b41d927 100644
+--- a/dist/lib/confluence/transformer/support/rehype/rehype-replace-internal-references.js
++++ b/dist/lib/confluence/transformer/support/rehype/rehype-replace-internal-references.js
+@@ -44,7 +44,10 @@ const rehypeConfluenceStorage = function rehypeConfluenceStorage({ spaceKey, pag
+             if (!node.properties.href.startsWith(".")) {
+                 return node;
+             }
+-            const referencedPagePath = resolve(dirname(file.path), node.properties.href);
++            // Patch: remark->rehype percent-encodes the href (spaces become %20), but the
++            // pages map is keyed by raw file paths, so an encoded href never matches and the
++            // link is dropped. Decode before resolving so filenames with spaces resolve.
++            const referencedPagePath = resolve(dirname(file.path), decodeURIComponent(node.properties.href));
+             const referencedPage = pages.get(referencedPagePath);
+             if (referencedPage === undefined) {
+                 file.message("Internal reference to non-existing page", node.position);
 diff --git a/dist/lib/confluence/transformer/support/remark/remark-replace-mermaid.js b/dist/lib/confluence/transformer/support/remark/remark-replace-mermaid.js
 index a39c1f658080f807a9ba1922b5deb5d492d2ba68..1893057ca1204c978f45cafb6a6d65ded7297eac 100644
 --- a/dist/lib/confluence/transformer/support/remark/remark-replace-mermaid.js
