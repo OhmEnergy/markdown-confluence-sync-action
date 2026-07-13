@@ -6,7 +6,7 @@ settings:
 
 patchedDependencies:
   '@telefonica/markdown-confluence-sync@2.4.0':
-    hash: coykmnwqdvsuxbi5wkrhdcjgoa
+    hash: 4ilnkxzj6iomrekpobr6arhexy
     path: patches/@telefonica__markdown-confluence-sync@2.4.0.patch
 
 importers:
@@ -33,7 +33,7 @@ importers:
         version: 2.2.0
       '@telefonica/markdown-confluence-sync':
         specifier: 2.4.0
-        version: 2.4.0(patch_hash=coykmnwqdvsuxbi5wkrhdcjgoa)(puppeteer@23.11.1(typescript@5.6.3))
+        version: 2.4.0(patch_hash=4ilnkxzj6iomrekpobr6arhexy)(puppeteer@23.11.1(typescript@5.6.3))
       '@types/jest':
         specifier: 29.5.14
         version: 29.5.14
@@ -5758,7 +5758,7 @@ snapshots:
       - debug
       - supports-color
 
-  '@telefonica/markdown-confluence-sync@2.4.0(patch_hash=coykmnwqdvsuxbi5wkrhdcjgoa)(puppeteer@23.11.1(typescript@5.6.3))':
+  '@telefonica/markdown-confluence-sync@2.4.0(patch_hash=4ilnkxzj6iomrekpobr6arhexy)(puppeteer@23.11.1(typescript@5.6.3))':
     dependencies:
       '@mermaid-js/mermaid-cli': 11.4.0(puppeteer@23.11.1(typescript@5.6.3))
       '@mocks-server/config': 2.0.0-beta.3
